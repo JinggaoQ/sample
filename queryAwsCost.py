@@ -53,7 +53,7 @@ def lambda_handler(event, context):
     
     # 3. 获取税费,后付费费用 RECORD_TYPE
     tax_postpaid_response = ce.get_cost_and_usage(TimePeriod = {'Start': startDay, 'End': endDay},
-    GroupBy=[{'Type': 'DIMENSION', 'Key': 'SERVICE'}], Granularity = 'MONTHLY', Metrics = ['UNBLENDED_COST'],
+    GroupBy=[{'Type': 'DIMENSION', 'Key': 'RECORD_TYPE'}], Granularity = 'MONTHLY', Metrics = ['UNBLENDED_COST'],
     Filter={
         "Dimensions": {
             "Key": "LINKED_ACCOUNT",
@@ -66,11 +66,9 @@ def lambda_handler(event, context):
     results3.extend(tax_postpaid_response['ResultsByTime'])
     
     #税费keyName
-    #taxKey = "tax"
-    taxKey = "Budgets"
+    taxKey = "tax"
     # 后付费KeyName。比如Recurring reservation fee, Savings Plan Recurring Fee
-    #postpaidKey = "recurring"
-    postpaidKey = "CloudTrail"
+    postpaidKey = "recurring"
     
     
     for itemList in results3:
