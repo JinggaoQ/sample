@@ -11,7 +11,7 @@ COPY go.sum ./
 RUN go mod download
 COPY *.go ./
 
-RUN go build -o /httptest
+RUN go build -o /enclave_httpserver
 
 EXPOSE 8888
 
