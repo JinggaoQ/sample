@@ -19,6 +19,8 @@ docker run -p 8001:8001 alpine/socat TCP-LISTEN:8001,fork,reuseaddr VSOCK-CONNEC
 
 运行Client App
 curl http://127.0.0.1 8001
+
+显示
 Hello, Enclave Http server!
 
 
