@@ -1,3 +1,5 @@
+
+
 创建Docker Image
 docker build ./ -t enclave_httpserver
 
@@ -13,3 +15,9 @@ nitro-cli console --enclave-id ${ENCLAVE_ID}
 
 打开另外一个Terminal, 在Parent Instance客户端，替换vsocke的CID 16为当前实际的数值
 docker run -p 8001:8001 alpine/socat TCP-LISTEN:8001,fork,reuseaddr VSOCK-CONNECT:16:8001
+
+运行Client App
+curl http://127.0.0.1 8001
+Hello, Enclave Http server!
+
+
