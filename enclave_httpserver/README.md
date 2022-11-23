@@ -17,10 +17,10 @@ nitro-cli console --enclave-id ${ENCLAVE_ID}
 #Open another Terminal in Parent Instance, replace the vsock CID 16 in following command.
 docker run -p 8001:8001 alpine/socat TCP-LISTEN:8001,fork,reuseaddr VSOCK-CONNECT:16:8001
 
-# Run Client App
+#Run Client App
 curl http://127.0.0.1 8001
 
-# Console output
+#Console output
 Hello, Enclave Http server!
 
 
