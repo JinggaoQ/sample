@@ -18,9 +18,10 @@ nitro-cli run-enclave --cpu-count 2 --memory 6144 --eif-path httptest.eif --debu
 ENCLAVE_ID=$(nitro-cli describe-enclaves | jq -r ".[0].EnclaveID")
 nitro-cli console --enclave-id ${ENCLAVE_ID}
 
-5.Open another Terminal in Parent Instance, replace the vsock CID 16 in following command.
+5.Open another Terminal in Parent Instance, Run socat http->vsock proxy.
 
-docker run -p 8001:8001 alpine/socat TCP-LISTEN:8001,fork,reuseaddr VSOCK-CONNECT:16:8001
+ENCLAVE_CID=$(nitro-cli describe-enclaves | jq -r ".[0].EnclaveCID")
+docker run -p 8001:8001 alpine/socat TCP-LISTEN:8001,fork,reuseaddr VSOCK-CONNECT:${ENCLAVE_CID}:8001
 
 6.Run Client App
 
